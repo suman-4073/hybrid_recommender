@@ -29,16 +29,14 @@ def main():
     svd, trainset, testset ,train_ratings_df= train_svd(ratings)
 
     print("\nHybrid recommendations for user 1, seeded on 'Avatar':")
-    for title, score in hybrid_recommend(
-        user_id=1, movie_title="Avatar",
-        new_df=new_df, similarity=similarity, svd=svd, alpha=0.5,
-    ):
-        print(f"  {title}  (hybrid score: {score:.3f})")
-
+    results, is_cold_start = hybrid_recommend(
+            user_id=1, movie_title="Avatar",
+            new_df=new_df, similarity=similarity, svd=svd, trainset=trainset, alpha=0.5,
+        )
     if is_cold_start:
             print("  (user 1 has no rating history -> showing pure content-based results)")
     for title, score in results:
-        print(f"  {title}  (score: {score:.3f})")
+            print(f"  {title}  (score: {score:.3f})")
     
     # demonstrate cold-start fallback explicitly with a user id guaranteed not
     # to exist in the training data
