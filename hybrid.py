@@ -12,7 +12,7 @@ Strategy: cascade + weighted blend.
 
 
 def hybrid_recommend(user_id, movie_title, new_df, similarity, svd,trainset=None,
-                      shortlist_size=25, top_n=5, alpha=0.5):
+                      shortlist_size=25, top_n=5, alpha=0.2):
     """
        Args:
            user_id: the user to personalize recommendations for

@@ -31,7 +31,7 @@ def main():
     print("\nHybrid recommendations for user 1, seeded on 'Avatar':")
     results, is_cold_start = hybrid_recommend(
             user_id=1, movie_title="Avatar",
-            new_df=new_df, similarity=similarity, svd=svd, trainset=trainset, alpha=0.5,
+            new_df=new_df, similarity=similarity, svd=svd, trainset=trainset, alpha=0.2,
         )
     if is_cold_start:
             print("  (user 1 has no rating history -> showing pure content-based results)")
@@ -43,7 +43,7 @@ def main():
     print("\nHybrid recommendations for a brand-new user (id=999999), seeded on 'Avatar':")
     results, is_cold_start = hybrid_recommend(
             user_id=999999, movie_title="Avatar",
-            new_df=new_df, similarity=similarity, svd=svd, trainset=trainset, alpha=0.5,
+            new_df=new_df, similarity=similarity, svd=svd, trainset=trainset, alpha=0.2,
         )
     if is_cold_start:
             print("  (cold start detected -> falling back to pure content-based results)")
@@ -51,7 +51,7 @@ def main():
             print(f"  {title}  (score: {score:.3f})")
     
     print("\nEvaluating content-based-only vs collaborative-only vs hybrid on held-out test ratings...")
-    comparison = evaluate_all(svd, testset,train_ratings_df, new_df, similarity, alpha=0.5)
+    comparison = evaluate_all(svd, testset,train_ratings_df, new_df, similarity, alpha=0.2)
     print_comparison_table(comparison)
 
 

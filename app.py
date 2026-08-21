@@ -70,7 +70,7 @@ with st.sidebar:
     st.header("Settings")
     user_id = st.number_input("User ID", min_value=1, value=1, step=1,
                                help="Try a user ID from the MovieLens ratings.csv, or an unused ID (e.g. 999999) to see the cold-start fallback.")
-    alpha = st.slider("Alpha (content vs. collaborative blend)", 0.0, 1.0, 0.5, 0.05,
+    alpha = st.slider("Alpha (content vs. collaborative blend)", 0.0, 1.0, 0.2, 0.05,
                        help="1.0 = pure content-based, 0.0 = pure collaborative filtering")
     top_n = st.slider("Number of recommendations", 3, 15, 5)
     st.caption(f"alpha={alpha:.2f} → {alpha*100:.0f}% content similarity, {(1-alpha)*100:.0f}% predicted rating")
